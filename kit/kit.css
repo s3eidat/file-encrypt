@@ -290,7 +290,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 .s3-sheet { width: min(460px, 100%); max-height: calc(100vh - 32px); overflow: auto; padding: 22px; border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-pop); animation: s3-pop 300ms var(--ease-spring); }
 .s3-sheet h2 { margin: 0 0 4px; font-size: 19px; letter-spacing: -.02em; }
 .s3-sheet p { margin: 0 0 16px; color: var(--text-2); }
-.s3-tiers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 10px; }
+.s3-tiers { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 10px; }
 .s3-tier { display: grid; gap: 2px; padding: 14px 8px; border-radius: 14px; text-align: center; background: var(--surface-2); border: 1px solid var(--line); color: var(--text); }
 .s3-tier:hover { text-decoration: none; border-color: var(--coffee); background: var(--coffee-soft); }
 .s3-tier .s3-cups { font-size: 20px; }
