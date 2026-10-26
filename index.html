@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>File Encrypt — Encrypt Files with a Password, Offline (AES-256) | S3eidat Tools</title>
+<meta name="description" content="Encrypt any file with a password in your browser: AES-256-GCM, PBKDF2-SHA256 600,000 rounds, chunked for large files, tamper and truncation detection. Restores the original name. Nothing is uploaded.">
+<meta property="og:title" content="File Encrypt — password-protect any file, offline">
+<meta property="og:description" content="AES-256-GCM file encryption that runs 100% in your browser. Nothing is uploaded.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="file-encrypt">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>File Encrypt</h1>
+    <p>Password-protect any file with AES-256-GCM. The file is processed in your browser in 4 MB chunks and never uploaded. Decrypting restores the original file and name.</p>
+  </section>
+
+  <div class="row between">
+    <div class="seg" id="mode" role="group" aria-label="Mode">
+      <button aria-pressed="true" data-v="enc">Encrypt</button>
+      <button aria-pressed="false" data-v="dec">Decrypt</button>
+    </div>
+    <span class="chip accent">AES-256-GCM · PBKDF2-SHA256 · 600,000 rounds</span>
+  </div>
+
+  <div class="grid-2 mt fe-grid">
+    <section class="card stack">
+      <h2 id="step1">1. Choose a file</h2>
+      <div class="drop" id="drop" role="button" aria-label="Choose a file">
+        <input type="file" hidden>
+        <svg class="i"><use href="#i-upload"/></svg>
+        <b id="drop-title">Drop a file here or click to choose</b>
+        <span class="faint" id="drop-sub">Any type, any size your browser can hold</span>
+      </div>
+      <div class="fe-file" id="file" hidden>
+        <svg class="i"><use href="#i-file"/></svg>
+        <div class="grow"><b id="fname"></b><span class="faint" id="fsize"></span></div>
+        <button class="btn ghost icon small" id="unpick" aria-label="Remove file"><svg class="i"><use href="#i-x"/></svg></button>
+      </div>
+
+      <h2 class="fe-h">2. Password</h2>
+      <label class="field" for="pw">Password
+        <span class="fe-pwrow">
+          <input type="password" class="input" id="pw" autocomplete="new-password" spellcheck="false" placeholder="A long passphrase is best">
+          <button class="btn" id="eye" aria-pressed="false">Show</button>
+        </span>
+      </label>
+      <label class="field" for="pw2" id="pw2-wrap">Confirm password
+        <input type="password" class="input" id="pw2" autocomplete="new-password" spellcheck="false">
+      </label>
+      <div class="row">
+        <button class="btn primary big" id="go"><svg class="i"><use href="#i-lock"/></svg><span>Encrypt file</span></button>
+        <button class="btn ghost" id="cancel" hidden>Cancel</button>
+      </div>
+    </section>
+
+    <section class="card stack">
+      <h2>3. Result</h2>
+      <div class="fe-progress" aria-hidden="true"><i id="bar"></i></div>
+      <p class="muted fe-status" id="status" role="status" aria-live="polite">Pick a file and a password to start.</p>
+      <div class="fe-result" id="result" hidden>
+        <svg class="i"><use href="#i-check"/></svg>
+        <div class="grow"><b id="rname"></b><span class="faint" id="rinfo"></span></div>
+        <button class="btn primary" id="dl"><svg class="i"><use href="#i-download"/></svg>Download</button>
+      </div>
+      <div class="fe-warn">
+        <b>Lose the password, lose the file.</b> There is no reset and no back door. The password is never stored, so nobody can recover it.
+        Keep the original until you've checked that the encrypted copy opens.
+      </div>
+      <ul class="fe-facts faint">
+        <li>Each file gets its own random salt, so its own key.</li>
+        <li>Every 4 MB chunk is authenticated with its position and a last-chunk flag: changed, reordered or cut-off files are rejected.</li>
+        <li>Decrypted data is only handed over after every chunk checks out.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
