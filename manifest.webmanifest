@@ -1,0 +1,18 @@
+{
+  "name": "File Encrypt — S3eidat Tools",
+  "short_name": "File Encrypt",
+  "description": "Encrypt files with a password, offline",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0d0f12",
+  "theme_color": "#0d0f12",
+  "icons": [
+    {
+      "src": "kit/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

@@ -169,7 +169,7 @@ svg.i { width: 18px; height: 18px; flex: none; stroke: currentColor; fill: none;
 }
 .s3-main > .card + .card, .stack-cards > .card + .card { margin-top: 14px; }
 .card h2 { margin: 0 0 12px; font-size: 15px; font-weight: 650; letter-spacing: -.01em; }
-.card h2 small { color: var(--text-3); font-weight: 500; margin-left: 6px; }
+.card h2 small { color: var(--text-3); font-weight: 500; margin-inline-start: 6px; }
 .stack { display: grid; gap: 12px; }
 .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
 .row > h2, .row > h3 { margin: 0; }
@@ -264,7 +264,7 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--accent); width
 .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; }
 
 table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-.tbl th, .tbl td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+.tbl th, .tbl td { text-align: start; padding: 9px 10px; border-bottom: 1px solid var(--line); }
 .tbl th { color: var(--text-3); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
 .tbl td { font-variant-numeric: tabular-nums; }
 .tbl-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--line); }
@@ -307,6 +307,14 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
   .s3-top .btn .s3-lbl { display: none; }
 }
 @media print {
+  /* paper is white: force light values even when the screen theme is dark */
+  :root, [data-theme] {
+    --bg: #fff; --surface: #fff; --surface-2: #f4f5f7; --surface-3: #e9ebef;
+    --line: rgba(0,0,0,.14); --line-strong: rgba(0,0,0,.24);
+    --text: #111; --text-2: #3a3f47; --text-3: #6b7280; --shadow: none; color-scheme: light;
+  }
   .s3-top, .s3-foot, .s3-toasts, .no-print { display: none !important; }
   body { background: #fff; color: #000; }
 }
+/* RTL: the select arrow sits on the left */
+[dir="rtl"] .select { padding-right: 12px; padding-left: 32px; background-position: 12px 50%, 17px 50%; }
