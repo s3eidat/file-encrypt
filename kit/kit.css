@@ -318,3 +318,7 @@ table.tbl { width: 100%; border-collapse: collapse; font-size: 13.5px; }
 }
 /* RTL: the select arrow sits on the left */
 [dir="rtl"] .select { padding-right: 12px; padding-left: 32px; background-position: 12px 50%, 17px 50%; }
+
+/* header link to s3eidatGPT (the owner's AI app) */
+.s3-top .s3-gpt { gap: 7px; }
+.s3-top .s3-gpt img { width: 18px; height: 18px; display: block; }
